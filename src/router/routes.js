@@ -30,6 +30,27 @@ const routes = [
         name: "tray",
         component: () => import("components/TrayContainer.vue"),
       },
+
+      //Register
+      {
+        path: "/register",
+        name: "register",
+        component: () => import("components/RegisterUser.vue"),
+      },
+
+      //Login
+      {
+        path: "/login",
+        name: "login",
+        component: () => import("components/LoginUser.vue"),
+      },
+
+      //Logout
+      {
+        path: "/logout",
+        name: "logout",
+        component: () => import("components/LogoutUser.vue"),
+      },
     ],
   },
   // Always leave this as last one,
