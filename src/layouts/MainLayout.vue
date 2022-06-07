@@ -12,6 +12,9 @@
               <q-item clickable v-close-popup to="categories">
                 <q-item-section>Categories</q-item-section>
               </q-item>
+              <q-item clickable v-close-popup to="traylist">
+                <q-item-section>Trays</q-item-section>
+              </q-item>
               <q-item clickable v-close-popup to="login">
                 <q-item-section>Login</q-item-section>
               </q-item>

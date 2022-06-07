@@ -36,6 +36,13 @@
     </div>
     <div style="margin-top: 15px; margin-bottom: 15px; padding: 13px 0 10px 0">
       <div class="col-4 text-center">
+        <q-btn
+          class="q-mr-sm"
+          color="primary"
+          label="Save Tray"
+          :disable="state.tray.length < 1"
+          @click="saveTray()"
+        />
         <q-btn color="primary" label="CLEAR TRAY" @click="clearTray()" />
       </div>
     </div>
@@ -83,6 +90,7 @@
 
 <script>
 import { reactive, onMounted } from "vue";
+import { poster } from "../utils/apiutil";
 
 export default {
   setup() {
@@ -121,9 +129,29 @@ export default {
       state.status = "tray cleared";
     };
 
+    const saveTray = async () => {
+      let user = JSON.parse(sessionStorage.getItem("user"));
+      let tray = JSON.parse(sessionStorage.getItem("tray"));
+      try {
+        state.status = "sending tray info to server";
+        let trayHelper = { email: user.email, selections: tray };
+        let payload = await poster("tray", trayHelper);
+        if (payload.indexOf("not") > 0) {
+          state.status = payload;
+        } else {
+          clearTray();
+          state.status = payload;
+        }
+      } catch (err) {
+        console.log(err);
+        state.status = `Error add tray: ${err}`;
+      }
+    };
+
     return {
       state,
       clearTray,
+      saveTray,
     };
   },
 };

@@ -27,7 +27,7 @@ const poster = async (endpoint, dataToPost) => {
     });
     payload = await response.json();
   } catch (error) {
-    payload = errod;
+    payload = error;
   }
   return payload;
 };

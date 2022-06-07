@@ -1,3 +1,5 @@
+import { onMounted } from "vue";
+
 const routes = [
   {
     path: "/",
@@ -50,6 +52,13 @@ const routes = [
         path: "/logout",
         name: "logout",
         component: () => import("components/LogoutUser.vue"),
+      },
+
+      //TrayList
+      {
+        path: "/traylist",
+        name: "traylist",
+        component: () => import("components/TrayList.vue"),
       },
     ],
   },
